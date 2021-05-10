@@ -1,0 +1,52 @@
+show databases;
+use databaseName;
+create table anyName(ID int, NAME VARCHAR);
+show tables; TO SHOW ALL THE TABLES
+DESC TABLENAME; DESCRIBE THE TABLE
+
+
+
+INSERT INTO TABLENAME; //DATA MANIPULATION
+INSERT INTO STUDENT(ID, NAME, AGE) VALUES (30, "HELLO WORLD" , 40);
+
+
+
+SELECT * FROM TABLENAME;; //SELECT THE TABLE
+SELECT * FROM STUDENT WHERE NAME= "HELLO";
+ SELECT ID,AGE FROM STUDENT;
+
+DELETE DELETES THE DATA ; //DELETE FROM STUDENT WHERE ID = 10;
+DELETE THE SPECIFIC DATA;
+
+ TRUNACTE TABLE STUDENT; //TRUNACTE TABLE STUDENT;
+DATA GETS DELETED, 
+
+
+DROP DELETES THE TABLE // DROP TABLE STUDENT;
+DELETES THE STRUCTURE OF TABLE
+
+
+ALTER TABLE TABLENAME MODIFY COLUMN
+ALTER TABLE CUSTOMERS
+   MODIFY AGE INT CHECK (AGE >= 18 );
+ALTER TABLE CUSTOMERS
+   ADD CONSTRAINT myCheckConstraint CHECK(AGE >= 18);
+
+
+
+UPDATE STUDENT SET SALARY = 100000 WHERE ID  = 5;
+
+
+Find the names of sailors who have reserved boat number 103?
+Find the names of sailors who have reserved a red boat?
+Find the names of sailors who have reserved atleast one boat?
+Find the name and age of sailors whose name begins and ends with B and has atleast
+3 characters?
+
+
+
+
+
+
+
+
