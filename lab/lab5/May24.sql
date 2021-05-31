@@ -70,6 +70,16 @@ SELECT MAX(SALARY), DEPTNO FROM EMPLOYEE GROUP BY DEPTNO;
 -- 8> Write a query to display the highest salary deptno wise and the name of the employee taking highest salary.
 SELECT MAX(SALARY), DEPTNO, ENAME FROM EMPLOYEE GROUP BY DEPTNO;
 
+-- COMMIT
+SELECT * FROM EMPLOYEE WHERE EMPNO = 1;
+COMMIT;
+
+START TRANSACTION;
+
+-- ROLLBACK
+rollback;
+
+SELECT * FROM EMPLOYEE;
 
 
 
