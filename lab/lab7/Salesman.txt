@@ -70,25 +70,3 @@ SELECT O.PURCHASE_AMT, C.C_NAME FROM ORDERS O, CUSTOMER C WHERE O.C_ID = C.C_ID;
 
 -- 4) Find the name and ID of all salesmen who have earned commission amount more than 10,000
 SELECT S_NAME, S_ID FROM SALESMAN WHERE COMMISSION > 10000;
-
--- 5) Retrieve salesman id of all salesmen from orders table without any repeats.
-SELECT DISTINCT S_ID FROM ORDERS;
-
-
--- 6) Find the highest purchase amount ordered by the each customer with their ID
-SELECT O.PURCHASE_AMT, O.C_ID FROM ORDERS O GROUP BY O.C_ID;
-
--- 7) Find the highest purchase amount with their customer ID and order date, for only those customers who have the highest purchase amount in a day is more than 2000
--- SELECT O.PURCHASE_AMT
-
--- 8) Find the name and city of those customers and salesmen who lives in the same city.
-SELECT C.C_NAME, S.S_NAME FROM CUSTOMER C, SALESMAN S WHERE C.C_CITY = S.CITY;
-
--- 9) Display all those orders by the customers not located in the same cities where their sale
-SELECT O.O_ID FROM ORDERS;
-
--- 10) Find all orders attributed to salesmen in Paris.
-
-
--- 11) Extract the data from the orders table for the salesman who earned the maximum commission
-
