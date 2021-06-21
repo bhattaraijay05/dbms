@@ -158,11 +158,31 @@ SELECT * FROM EMPLOYEE;
 DELETE FROM EMPLOYEE WHERE DEPARTMENT_ID = (SELECT D.DEPARTMENT_ID FROM DEPARTMENT D WHERE D.NAME="ACCOUNTING" );
 
 -- 24. Display the second highest salary drawing employee details.
-
+SELECT SALARY FROM EMPLOYEE;
+SELECT MAX(SALARY) FROM EMPLOYEE WHERE SALARY NOT IN (SELECT MAX(SALARY) FROM EMPLOYEE);
+SELECT SALARY FROM EMPLOYEE order by salary desc limit 1, 1;
 
 -- 25. Display the Nth highest salary drawing employee details
+-- order by salary desc limit 3,1;
+SELECT SALARY FROM EMPLOYEE ORDER BY SALARY DESC LIMIT 1, 1;
+
+-- Sub-Query operators: (ALL, ANY, SOME, EXISTS)
+-- 26. List out the employees who earn more than every employee in department 30.
+SELECT * FROM EMPLOYEE WHERE SALARY > ALL (SELECT SALARY FROM EMPLOYEE WHERE DEPARTMENT_ID = 30) ;
+
+-- 27. List out the employees who earn more than the lowest salary in department 30.
+SELECT * FROM EMPLOYEE WHERE SALARY > ALL (SELECT MIN(SALARY) FROM EMPLOYEE WHERE DEPARTMENT_ID = 30);
+
+-- 28. Find out whose department has not employees.
+SELECT * FROM DEPARTMENT D WHERE D.DEPARTMENT_ID != ALL (SELECT E.DEPARTMENT_ID FROM EMPLOYEE E, DEPARTMENT D WHERE D.DEPARTMENT_ID = E.DEPARTMENT_ID);
+
+-- 29. Find out which department does not have any employees.
+SELECT D.NAME FROM DEPARTMENT D WHERE D.DEPARTMENT_ID != ALL (SELECT E.DEPARTMENT_ID FROM EMPLOYEE E, DEPARTMENT D WHERE D.DEPARTMENT_ID = E.DEPARTMENT_ID);
 
 
+-- Co-Related Sub Queries:
+-- 30. Find out the employees who earn greater than the average salary for their department.
+SELECT * FROM EMPLOYEE WHERE EXISTS ( SELECT AVG(SALARY) FROM EMPLOYEE group by DEPARTMENT_ID);
 
 
 
