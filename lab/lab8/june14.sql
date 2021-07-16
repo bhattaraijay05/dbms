@@ -186,6 +186,97 @@ SELECT * FROM EMPLOYEE WHERE EXISTS ( SELECT AVG(SALARY) FROM EMPLOYEE group by 
 
 
 
+-- Joins
+-- Simple join
+-- 48. List our employees with their department names
+SELECT CONCAT(FIRST_NAME,' ',MIDDLE_NAME,' ',LAST_NAME) AS 'EMPLOYEE NAME', EMPLOYEE.DEPARTMENT_ID FROM EMPLOYEE
+LEFT JOIN DEPARTMENT
+ON DEPARTMENT.DEPARTMENT_ID = EMPLOYEE.DEPARTMENT_ID;
+
+
+
+
+-- 49. Display employees with their designations (jobs)
+
+SELECT CONCAT(FIRST_NAME,' ',MIDDLE_NAME,' ',LAST_NAME) AS 'EMPLOYEE NAME',JOB_FUNCTION FROM EMPLOYEE
+LEFT JOIN JOB
+ON JOB.JOB_ID = EMPLOYEE.JOB_ID;
+
+
+
+-- 50. Display the employees with their department name and regional groups.
+SELECT CONCAT(FIRST_NAME,' ',MIDDLE_NAME,' ',LAST_NAME) AS 'EMPLOYEE NAME',EMPLOYEE.DEPARTMENT_ID,REGIONAL_GROUP FROM EMPLOYEE
+LEFT JOIN DEPARTMENT
+ON DEPARTMENT.DEPARTMENT_ID = EMPLOYEE.DEPARTMENT_ID
+LEFT JOIN LOCATION
+ON LOCATION.LOCATION_ID = DEPARTMENT.LOCATION_ID;
+
+
+
+-- 51. How many employees who are working in different departments and display with department name.
+
+SELECT EMPLOYEE.DEPARTMENT_ID,COUNT(*) AS COUNT FROM EMPLOYEE
+JOIN DEPARTMENT
+ON DEPARTMENT.DEPARTMENT_ID = EMPLOYEE.DEPARTMENT_ID
+GROUP BY DEPARTMENT.NAME;
+
+
+-- 52. How many employees who are working in sales department.
+SELECT COUNT(*) AS COUNT FROM EMPLOYEE
+JOIN DEPARTMENT
+ON EMPLOYEE.DEPARTMENT_ID = DEPARTMENT.DEPARTMENT_ID
+WHERE DEPARTMENT.NAME = 'SALES';
+
+
+
+-- 53. Which is the department having greater than or equal to 5 employees and display the department names in ascending order?
+
+SELECT EMPLOYEE.DEPARTMENT_ID,COUNT(*) AS COUNT FROM EMPLOYEE
+JOIN DEPARTMENT
+ON DEPARTMENT.DEPARTMENT_ID = EMPLOYEE.DEPARTMENT_ID
+GROUP BY DEPARTMENT.NAME
+ORDER BY DEPARTMENT.NAME;
+
+-- 54. How many jobs in the organization with designations.
+
+SELECT EMPLOYEE.JOB_ID,COUNT(*) AS COUNT FROM EMPLOYEE
+LEFT JOIN JOB
+ON JOB.JOB_ID = EMPLOYEE.JOB_ID
+GROUP BY JOB.JOB_FUNCTION;
+
+
+-- 55. How many employees working in “New York”.
+SELECT COUNT(*) AS COUNT FROM EMPLOYEE
+JOIN DEPARTMENT
+ON DEPARTMENT.DEPARTMENT_ID = EMPLOYEE.DEPARTMENT_ID
+JOIN LOCATION
+ON LOCATION.LOCATION_ID = DEPARTMENT.LOCATION_ID
+WHERE LOCATION.REGIONAL_GROUP = 'NEW YORK';
+
+
+
+
+-- Non – Equi Join:
+-- 56. Display employee details with salary grades.
+-- 57. List out the no. of employees on grade wise.
+-- 58. Display the employ salary grades and no. of employees between 2000 to 5000 range of
+-- salary.
+
+-- Self-Join:
+-- 59. Display the employee details with their manager names.
+
+-- 60. Display the employee details who earn more than their manager’s salaries.
+-- 61. Show the no. of employees working under every manager.
+
+-- Outer Join:
+-- 61. Display employee details with all departments.
+-- 62. Display all employees in sales or operation departments.
+-- Set Operators:
+-- 63. List out the distinct jobs in Sales and Accounting Departments.
+-- 64. List out the ALL jobs in Sales and Accounting Departments.
+-- 65. List out the common jobs in Research and Accounting Departments in ascending order.
+
+
 
 
 

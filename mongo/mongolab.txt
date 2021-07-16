@@ -1,0 +1,218 @@
+Implement MongoDB queries using CRUD operations for a restaurants collection
+2. For the structure of “Restaurants “ collection  Write a MongoDB query
+I. to display all the documents in the collection restaurants
+II. to display the fields restaurant_id, name, borough and cuisine for all the
+documents in the collection restaurant.
+III. to display the fields restaurant_id, name, borough and cuisine, but exclude the
+field _id for all the documents in the collection restaurant
+IV. to display all the restaurant which is in the borough Bronx
+V. to display the first 5 restaurant which is in the borough Bronx
+VI. to find the restaurants who achieved a score more than 90
+VII. to find the restaurants that achieved a score, more than 80 but less than
+100
+
+
+use restaurant
+
+
+
+
+2. For the structure of “Restaurants “ collection  Write a MongoDB query
+
+db.restaurant.insert(
+{
+"address": {
+"building": "1007",
+"coord": [ -73.856077, 40.848447 ],
+"street": "Morris Park Ave",
+"zipcode": "10462"
+},
+"borough": "Bronx",
+"cuisine": "Bakery",
+"grades": [
+{ "date": { "$date": 1393804800000 }, "grade":
+"A", "score": 2 },
+{ "date": { "$date": 1378857600000 }, "grade":
+"A", "score": 6 },
+{ "date": { "$date": 1358985600000 }, "grade":
+"A", "score": 10 },
+{ "date": { "$date": 1322006400000 }, "grade":
+"A", "score": 9 },
+{ "date": { "$date": 1299715200000 }, "grade":
+"B", "score": 14 }
+],
+"name": "Morris Park Bake Shop",
+"restaurant_id": "30075445"
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+db.restaurant.insertMany(
+    [
+{
+"address": {
+"building": "1008",
+"coord": [ -83.856077, 70.848447 ],
+"street": "Street 1",
+"zipcode": "10458"
+},
+"borough": "Brx",
+"cuisine": "Cookies",
+"grades": [
+{ "date": { "$date": 1393804800000 }, "grade":
+"A", "score": 2 },
+{ "date": { "$date": 1378857600000 }, "grade":
+"A", "score": 6 },
+{ "date": { "$date": 1358985600000 }, "grade":
+"A", "score": 10 },
+{ "date": { "$date": 1322006400000 }, "grade":
+"A", "score": 9 },
+{ "date": { "$date": 1299715200000 }, "grade":
+"B", "score": 14 }
+],
+"name": "Morris Park Cookie Shop",
+"restaurant_id": "30075896"
+},
+{
+"address": {
+"building": "1012",
+"coord": [ -92.856077, 40.848447 ],
+"street": "Street 8",
+"zipcode": "10458"
+},
+"borough": "Brx",
+"cuisine": "Chocolate",
+"grades": [
+{ "date": { "$date": 1393804800000 }, "grade":
+"A", "score": 8 },
+{ "date": { "$date": 1378857600000 }, "grade":
+"A", "score": 6 },
+{ "date": { "$date": 1358985600000 }, "grade":
+"A", "score": 10 },
+{ "date": { "$date": 1322006400000 }, "grade":
+"A", "score": 9 },
+{ "date": { "$date": 1299715200000 }, "grade":
+"B", "score": 14 }
+],
+"name": "Morris Park Chocolate Shop",
+"restaurant_id": "30075865"
+},
+{
+"address": {
+"building": "1052",
+"coord": [ -48.856077, 75.848447 ],
+"street": "Street 5",
+"zipcode": "10458"
+},
+"borough": "Brx",
+"cuisine": "Bread",
+"grades": [
+{ "date": { "$date": 1393804800000 }, "grade":
+"A", "score": 2 },
+{ "date": { "$date": 1378857600000 }, "grade":
+"A", "score": 6 },
+{ "date": { "$date": 1358985600000 }, "grade":
+"A", "score": 8 },
+{ "date": { "$date": 1322006400000 }, "grade":
+"A", "score": 9 },
+{ "date": { "$date": 1299715200000 }, "grade":
+"B", "score": 14 }
+],
+"name": "Morris Park Bread Shop",
+"restaurant_id": "30078625"
+}
+    ]
+)
+
+
+I: to display all the documents in the collection restaurants
+
+> db.restaurant.find().pretty()
+
+
+
+
+to display the fields restaurant_id, name, borough and cuisine for all the
+documents in the collection restaurant.
+
+db.restaurant.find({},{restaurant_id : 1,name: 1,borough:1,cuisine :1})
+
+
+
+III. to display the fields restaurant_id, name, borough and cuisine, but exclude the
+field _id for all the documents in the collection restaurant
+db.restaurant.find({},{restaurant_id : 1,name:1,borough:1,cuisine :1,_id:0})
+
+
+
+IV. to display all the restaurant which is in the borough Bronx
+
+db.restaurant.find({borough: "Bronx"})
+
+
+
+V. to display the first 5 restaurant which is in the borough Bronx
+db.restaurant.find({borough: "Brx"}).limit(2)
+
+
+
+VI. to find the restaurants who achieved a score more than 90
+db.restaurant.find({grades : { $elemMatch:{score:{$gt : 9}}}})
+
+
+
+VII. to find the restaurants that achieved a score, more than 80 but less than
+100
+db.restaurant.find({grades : { $elemMatch:{score:{$gt : 8 , $lt :10}}}})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
